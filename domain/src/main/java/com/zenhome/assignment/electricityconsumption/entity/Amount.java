@@ -19,4 +19,7 @@ public class Amount {
     public BigDecimal toBigDecimal() {
         return amount;
     }
+    public String toString() {
+        return String.valueOf(amount);
+    }
 }

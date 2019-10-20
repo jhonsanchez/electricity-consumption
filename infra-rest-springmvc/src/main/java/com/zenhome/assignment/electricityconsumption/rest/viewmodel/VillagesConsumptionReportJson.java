@@ -11,4 +11,5 @@ import java.util.List;
 public class VillagesConsumptionReportJson {
     @JsonProperty("villages")
     private final List<VillageConsumptionJson> villagesConsumption;
+
 }

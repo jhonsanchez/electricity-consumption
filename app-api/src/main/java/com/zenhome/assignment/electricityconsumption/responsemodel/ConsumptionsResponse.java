@@ -10,4 +10,8 @@ public class ConsumptionsResponse {
     public ConsumptionsResponse(List<Consumption> consumptions) {
         this.consumptions = consumptions;
     }
+
+    public List<Consumption> consumptions() {
+        return consumptions;
+    }
 }

@@ -3,6 +3,7 @@ package com.zenhome.assignment.electricityconsumption.entity;
 import com.zenhome.assignment.electricityconsumption.entity.jpa.CounterConsumptionJpa;
 import com.zenhome.assignment.electricityconsumption.entity.jpa.CounterConsumptionRepositoryJpa;
 import com.zenhome.assignment.electricityconsumption.entitygateway.VillageConsumptionEntityGateway;
+import com.zenhome.assignment.electricityconsumption.entitygateway.VillageEntityGateway;
 
 import javax.inject.Named;
 import java.time.LocalDateTime;
@@ -12,28 +13,34 @@ import java.util.stream.Collectors;
 @Named
 public class JpaVillageConsumptionEntityGateway implements VillageConsumptionEntityGateway {
     private final CounterConsumptionRepositoryJpa counterConsumptionRepositoryJpa;
+    private final VillageEntityGateway villageEntityGateway;
 
-    public JpaVillageConsumptionEntityGateway(CounterConsumptionRepositoryJpa counterConsumptionRepositoryJpa) {
+    public JpaVillageConsumptionEntityGateway(CounterConsumptionRepositoryJpa counterConsumptionRepositoryJpa,
+                                              VillageEntityGateway villageEntityGateway) {
         this.counterConsumptionRepositoryJpa = counterConsumptionRepositoryJpa;
+        this.villageEntityGateway = villageEntityGateway;
     }
 
     @Override
     public List<Consumption> getVillageConsumptionsByDuration(Duration duration) {
-        return counterConsumptionRepositoryJpa.findByCreatedDateAfter(duration.dateTimeBeforeDuration())
-            .stream()
-        .map(CounterConsumptionJpa::toDomain)
-        .collect(Collectors.toList())
-        ;
+        final List<Consumption> consumptions = counterConsumptionRepositoryJpa.findByCreatedDateAfter(duration.dateTimeBeforeDuration())
+                .stream()
+                .map(CounterConsumptionJpa::toDomain)
+                .collect(Collectors.toList());
+        consumptions
+                .forEach(this::associateVillageConsumer);
+        return consumptions;
     }
-    @Override
-    public void addVillageConsumption(Counter counter, Consumption consumption) {
-        final CounterConsumptionJpa counterConsumptionJpa =
-                new CounterConsumptionJpa(consumption.consumptionId(),counter.counterId(), consumption.amount(), LocalDateTime.now());
-        counterConsumptionRepositoryJpa.save(counterConsumptionJpa);
+
+    private void associateVillageConsumer(Consumption consumption) {
+        final Village village = villageEntityGateway.getVillageByCounterId(consumption.counterId());
+        consumption.associateVillage(village);
     }
 
     @Override
-    public Village getVillageByCounterId(String counterId) {
-        return null;
+    public void addVillageConsumption(Counter counter, Consumption consumption) {
+        final CounterConsumptionJpa counterConsumptionJpa =
+                new CounterConsumptionJpa(consumption.consumptionId(), counter.counterId(), consumption.amount(), LocalDateTime.now());
+        counterConsumptionRepositoryJpa.save(counterConsumptionJpa);
     }
 }

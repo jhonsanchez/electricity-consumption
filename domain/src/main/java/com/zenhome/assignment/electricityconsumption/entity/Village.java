@@ -1,11 +1,22 @@
 package com.zenhome.assignment.electricityconsumption.entity;
 
 public class Village {
-    private final String villageId;
+    private String villageId;
     private final String villaneName;
 
-    public Village(String villageId, String villaneName) {
+    private Village(String villageId, String villaneName) {
         this.villageId = villageId;
         this.villaneName = villaneName;
+    }
+    private Village(String villaneName) {
+        this.villaneName = villaneName;
+    }
+
+    public static Village of(String villaneName) {
+        return new Village(villaneName);
+    }
+
+    public String villageName() {
+        return villaneName;
     }
 }

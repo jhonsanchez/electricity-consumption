@@ -35,4 +35,12 @@ public class Consumption {
     public String counterId() {
         return counterId;
     }
+
+    public String villageName() {
+        return village.villageName();
+    }
+
+    public String amountString() {
+        return amount.toString();
+    }
 }

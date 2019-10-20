@@ -1,6 +1,6 @@
 package com.zenhome.assignment.electricityconsumption.entity;
 
-import com.zenhome.assignment.electricityconsumption.entitygateway.VillageConsumptionEntityGateway;
+import com.zenhome.assignment.electricityconsumption.entitygateway.VillageEntityGateway;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class VillageConsumption {
         this.consumption = consumption;
     }
 
-    public static VillageConsumption of(List<Consumption> consumption, VillageConsumptionEntityGateway villageConsumptionEntityGateway) {
+    public static VillageConsumption of(List<Consumption> consumption, VillageEntityGateway villageConsumptionEntityGateway) {
         consumption
                 .forEach(p -> p.associateVillage(villageConsumptionEntityGateway.getVillageByCounterId(p.counterId())));
         return new VillageConsumption(consumption);
