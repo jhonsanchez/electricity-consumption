@@ -13,12 +13,15 @@ public class Amount {
     public static Amount of(String amount) {
         return new Amount(new BigDecimal(amount));
     }
+
     public static Amount of(BigDecimal amount) {
         return new Amount(amount);
     }
+
     public BigDecimal toBigDecimal() {
         return amount;
     }
+
     public String toString() {
         return String.valueOf(amount);
     }

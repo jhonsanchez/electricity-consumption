@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface VillageConsumptionEntityGateway {
     List<Consumption> getVillageConsumptionsByDuration(Duration duration);
+
     void addVillageConsumption(Counter counter, Consumption consumption);
 }

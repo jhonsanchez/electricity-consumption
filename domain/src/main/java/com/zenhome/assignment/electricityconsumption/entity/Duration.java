@@ -22,7 +22,7 @@ public class Duration {
         int durationTime =
                 Optional
                         .of(durationInput)
-                        .map(string -> string.substring(0, durationInput.length()-1))
+                        .map(string -> string.substring(0, durationInput.length() - 1))
                         .map(Integer::parseInt)
                         .orElseThrow(() -> new IllegalArgumentException("Duration wrong format, please use regex [^\\d+[h,H,m,M,s,S]$] to validate your data"));
         final TemporalUnit unit = getTemporalUnit(getLastCharacter(durationInput));
@@ -38,8 +38,7 @@ public class Duration {
             case "H" -> ChronoUnit.HOURS;
             case "D" -> ChronoUnit.DAYS;
             case "M" -> ChronoUnit.MONTHS;
-            default ->
-                throw new IllegalArgumentException("Duration wrong format, please use regex [^\\d+[h,H,m,M,s,S]$] to validate your data");
+            default -> throw new IllegalArgumentException("Duration wrong format, please use regex [^\\d+[h,H,m,M,s,S]$] to validate your data");
         };
 
     }

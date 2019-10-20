@@ -21,9 +21,14 @@ public class Consumption {
         return new Consumption(consumptionId, counterId, creationTime, Amount.of(amount));
     }
 
+    public static Consumption of(String counterId, BigDecimal amount) {
+        return new Consumption(null, counterId, null, Amount.of(amount));
+    }
+
     public String consumptionId() {
         return consumptionId;
     }
+
     public BigDecimal amount() {
         return amount.toBigDecimal();
     }

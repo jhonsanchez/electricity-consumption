@@ -2,11 +2,13 @@ package com.zenhome.assignment.electricityconsumption.entity;
 
 public class Counter {
     private final String counterId;
-    private final Village village;
 
-    public Counter(String counterId, Village village) {
+    private Counter(String counterId) {
         this.counterId = counterId;
-        this.village = village;
+    }
+
+    public static Counter of(String counterId) {
+        return new Counter(counterId);
     }
 
     public String counterId() {

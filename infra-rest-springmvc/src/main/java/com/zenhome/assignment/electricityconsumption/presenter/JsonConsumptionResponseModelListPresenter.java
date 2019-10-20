@@ -10,10 +10,9 @@ import java.util.stream.Collectors;
 
 public class JsonConsumptionResponseModelListPresenter implements Consumer<ConsumptionsResponse> {
     private VillagesConsumptionReportJson villagesConsumptionReport;
+
     @Override
     public void accept(ConsumptionsResponse consumptionsResponse) {
-
-
         final List<VillageConsumptionJson> villageConsumptionJson = consumptionsResponse
                 .consumptions()
                 .stream()

@@ -1,5 +1,6 @@
 package com.zenhome.assignment.electricityconsumption.entity;
 
+import com.zenhome.assignment.electricityconsumption.entity.jpa.CounterConsumptionAcumulatorJpa;
 import com.zenhome.assignment.electricityconsumption.entity.jpa.CounterConsumptionJpa;
 import com.zenhome.assignment.electricityconsumption.entity.jpa.CounterConsumptionRepositoryJpa;
 import com.zenhome.assignment.electricityconsumption.entitygateway.VillageConsumptionEntityGateway;
@@ -23,9 +24,9 @@ public class JpaVillageConsumptionEntityGateway implements VillageConsumptionEnt
 
     @Override
     public List<Consumption> getVillageConsumptionsByDuration(Duration duration) {
-        final List<Consumption> consumptions = counterConsumptionRepositoryJpa.findByCreatedDateAfter(duration.dateTimeBeforeDuration())
+        final List<Consumption> consumptions = counterConsumptionRepositoryJpa.findAcumulatorByCreatedDateAfter(duration.dateTimeBeforeDuration())
                 .stream()
-                .map(CounterConsumptionJpa::toDomain)
+                .map(CounterConsumptionAcumulatorJpa::toDomain)
                 .collect(Collectors.toList());
         consumptions
                 .forEach(this::associateVillageConsumer);
@@ -40,7 +41,7 @@ public class JpaVillageConsumptionEntityGateway implements VillageConsumptionEnt
     @Override
     public void addVillageConsumption(Counter counter, Consumption consumption) {
         final CounterConsumptionJpa counterConsumptionJpa =
-                new CounterConsumptionJpa(consumption.consumptionId(), counter.counterId(), consumption.amount(), LocalDateTime.now());
+                CounterConsumptionJpa.of(counter.counterId(), consumption.amount());
         counterConsumptionRepositoryJpa.save(counterConsumptionJpa);
     }
 }

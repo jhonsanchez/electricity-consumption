@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.inject.Named;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Named
 @Slf4j
@@ -39,7 +38,11 @@ public class ExternalApiVillageEntityGateway implements VillageEntityGateway {
 
     private Village getVillageFromMock(String counterId) {
         final List<String> villages = Arrays.asList(VILLAGES_FACTORY.split(","));
+        try {
         final String villageName = villages.get(Integer.parseInt(counterId));
-        return Village.of(villageName);
+            return Village.of(villageName);
+        } catch (Exception e) {
+            return Village.fromCounterId(counterId);
+        }
     }
 }

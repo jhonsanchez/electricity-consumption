@@ -15,7 +15,7 @@ public class ListConsumptionsRequest {
     }
 
     public static ListConsumptionsRequest of(@Nullable String duration) {
-        if(duration==null)
+        if (duration == null)
             throw new IllegalArgumentException("Duration cannot be null...");
         return new ListConsumptionsRequest(Duration.of(duration));
     }
