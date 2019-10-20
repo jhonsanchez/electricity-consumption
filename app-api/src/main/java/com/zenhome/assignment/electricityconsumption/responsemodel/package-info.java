@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package com.zenhome.assignment.electricityconsumption.responsemodel;
+
+import javax.annotation.ParametersAreNonnullByDefault;

@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package com.zenhome.assignment.electricityconsumption.interactor;
+
+import javax.annotation.ParametersAreNonnullByDefault;

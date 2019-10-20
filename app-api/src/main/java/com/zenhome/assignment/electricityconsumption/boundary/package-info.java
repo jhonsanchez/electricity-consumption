@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package com.zenhome.assignment.electricityconsumption.boundary;
+
+import javax.annotation.ParametersAreNonnullByDefault;
