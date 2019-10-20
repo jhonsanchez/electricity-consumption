@@ -1,4 +1,4 @@
-package com.zenhome.assignment.electricityconsumption.entity.propery;
+package com.zenhome.assignment.electricityconsumption.entity.property;
 
 import lombok.Getter;
 import lombok.Setter;

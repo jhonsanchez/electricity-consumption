@@ -1,7 +1,7 @@
 package com.zenhome.assignment.electricityconsumption.entity.external;
 
 import com.zenhome.assignment.electricityconsumption.entity.Village;
-import com.zenhome.assignment.electricityconsumption.entity.propery.InfraDbProperties;
+import com.zenhome.assignment.electricityconsumption.entity.property.InfraDbProperties;
 import com.zenhome.assignment.electricityconsumption.entitygateway.VillageEntityGateway;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestTemplate;
