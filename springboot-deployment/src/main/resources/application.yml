@@ -6,4 +6,4 @@ management:
 external:
   village-external-api-url: http://localhost:99999/
 runner:
-  populate-data: true
+  populate-data: false

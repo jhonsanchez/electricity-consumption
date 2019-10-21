@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AddCounterConsumptionJsonPayload {
+    @JsonProperty("counter_id")
     private final String counterId;
+    @JsonProperty("amount")
     private final String amount;
 
     @JsonCreator

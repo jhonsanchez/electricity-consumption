@@ -15,8 +15,8 @@ public class AddCounterConsumptionRequest {
         this.amount = amount;
     }
 
-    public static AddCounterConsumptionRequest of(@Nonnull String counterId, @Nonnull String ammount) {
-        return new AddCounterConsumptionRequest(Counter.of(counterId), Amount.of(ammount));
+    public static AddCounterConsumptionRequest of(@Nonnull String counterId, @Nonnull String amount) {
+        return new AddCounterConsumptionRequest(Counter.of(counterId), Amount.of(amount));
     }
 
     public Counter counter() {
